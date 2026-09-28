@@ -1,0 +1,88 @@
+#!/bin/sh
+# impeccable-swiftui launcher.
+# Compiles the Swift detector (scripts/detector/{Core,CLI}) once with swiftc and
+# caches the binary by source hash:
+#   ${XDG_CACHE_HOME:-$HOME/.cache}/impeccable-swiftui/<hash12>/impeccable-swiftui
+# Then execs it with the given arguments. IMPECCABLE_SWIFTUI_BIN overrides the binary.
+set -u
+
+verb=${1:-}
+
+fail() {
+  # The hook must never break the agent's edit loop: exit 0 silently.
+  if [ "$verb" = "hook" ]; then exit 0; fi
+  printf 'impeccable-swiftui: %s\n' "$1" >&2
+  exit 1
+}
+
+if [ -n "${IMPECCABLE_SWIFTUI_BIN:-}" ] && [ -x "${IMPECCABLE_SWIFTUI_BIN}" ]; then
+  exec "${IMPECCABLE_SWIFTUI_BIN}" "$@"
+fi
+
+# Resolve this script's real directory (follow symlinks).
+self=$0
+while [ -h "$self" ]; do
+  link=$(readlink "$self")
+  case $link in
+    /*) self=$link ;;
+    *) self=$(dirname -- "$self")/$link ;;
+  esac
+done
+dir=$(CDPATH= cd -- "$(dirname -- "$self")" && pwd) || fail "cannot resolve script directory"
+src="$dir/detector"
+[ -d "$src/Core" ] && [ -f "$src/CLI/main.swift" ] || fail "detector sources missing under $src"
+
+# Hash the detector sources (sorted by path, contents concatenated).
+if command -v shasum >/dev/null 2>&1; then
+  hasher="shasum -a 256"
+elif command -v sha256sum >/dev/null 2>&1; then
+  hasher="sha256sum"
+else
+  fail "need shasum or sha256sum to cache the detector build"
+fi
+hash=$(
+  cd "$src" || exit 1
+  find Core CLI -type f -name '*.swift' | LC_ALL=C sort | while IFS= read -r f; do
+    printf '%s\n' "$f"
+    cat "$f"
+  done | $hasher | cut -c1-12
+) || fail "cannot hash detector sources"
+[ -n "$hash" ] || fail "cannot hash detector sources"
+
+cache="${XDG_CACHE_HOME:-$HOME/.cache}/impeccable-swiftui/$hash"
+bin="$cache/impeccable-swiftui"
+
+if [ ! -x "$bin" ]; then
+  if command -v xcrun >/dev/null 2>&1 && xcrun --find swiftc >/dev/null 2>&1; then
+    swiftc_cmd="xcrun swiftc"
+  elif command -v swiftc >/dev/null 2>&1; then
+    swiftc_cmd="swiftc"
+  else
+    fail "swiftc not found. Install Xcode or the Command Line Tools (xcode-select --install), or a Swift toolchain, then retry."
+  fi
+  mkdir -p "$cache" || fail "cannot create cache dir $cache"
+  tmp="$cache/.build.$$"
+  if [ "$verb" != "hook" ]; then
+    printf 'impeccable-swiftui: compiling detector (one time)…\n' >&2
+  fi
+  # Core/*.swift + CLI/main.swift as one module; main.swift uses top-level code.
+  # Runs in a function so `set --` does not clobber the script's arguments.
+  compile() {
+    set --
+    for f in "$src"/Core/*.swift; do set -- "$@" "$f"; done
+    $swiftc_cmd -O -module-name ImpeccableSwiftUI "$@" "$src/CLI/main.swift" -o "$tmp"
+  }
+  if [ "$verb" = "hook" ]; then
+    compile >/dev/null 2>&1
+  else
+    compile >&2
+  fi
+  status=$?
+  if [ $status -ne 0 ] || [ ! -f "$tmp" ]; then
+    rm -f "$tmp"
+    fail "detector compilation failed (swiftc exit $status)"
+  fi
+  chmod +x "$tmp" && mv -f "$tmp" "$bin" || { rm -f "$tmp"; fail "cannot install binary to $bin"; }
+fi
+
+exec "$bin" "$@"

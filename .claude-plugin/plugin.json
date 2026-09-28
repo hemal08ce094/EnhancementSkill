@@ -1,0 +1,10 @@
+{
+  "name": "enhancement-skill",
+  "description": "Human touch for SwiftUI apps: understand who the app is for, derive one direction, and apply DesignSkills, Drawably, Thinking Orbs, Bot Avatars and Impeccable to make it feature-worthy.",
+  "version": "0.1.0",
+  "author": { "name": "hemal08ce094" },
+  "homepage": "https://github.com/hemal08ce094/EnhancementSkill",
+  "repository": "https://github.com/hemal08ce094/EnhancementSkill",
+  "license": "MIT",
+  "skills": ["./skill/", "./skills/"]
+}

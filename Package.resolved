@@ -1,0 +1,42 @@
+{
+  "originHash" : "aa4ddb1426c7b5c1e0555b0508971396df3cbed211a2fbe159919f2b4c52d54b",
+  "pins" : [
+    {
+      "identity" : "botavatarsswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hemal08ce094/BotAvatarsSwiftUI",
+      "state" : {
+        "revision" : "fd74cf59e5a242e3e4bf1b4a093e4d0530b98fcb",
+        "version" : "0.1.0"
+      }
+    },
+    {
+      "identity" : "designskillsswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hemal08ce094/DesignSkillsSwiftUI",
+      "state" : {
+        "revision" : "36a021ff1aa40cdff99bde4251b69ab423934f77",
+        "version" : "0.1.0"
+      }
+    },
+    {
+      "identity" : "drawablyswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hemal08ce094/DrawablySwiftUI",
+      "state" : {
+        "revision" : "a8502390a072ef89738df45058488e1c50d243ab",
+        "version" : "0.1.0"
+      }
+    },
+    {
+      "identity" : "thinkingorbsswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hemal08ce094/ThinkingOrbsSwiftUI",
+      "state" : {
+        "revision" : "9d60ad2cd8f2ec7e62f4d34d01f74b34505ca0d1",
+        "version" : "0.2.1"
+      }
+    }
+  ],
+  "version" : 3
+}

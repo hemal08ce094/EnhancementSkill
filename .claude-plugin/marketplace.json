@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "enhancement-skill",
+  "metadata": {
+    "description": "Enhancement Skill: one orchestrating skill plus five SwiftUI design kits, clubbed."
+  },
+  "owner": { "name": "hemal08ce094" },
+  "plugins": [
+    {
+      "name": "enhancement-skill",
+      "description": "Understands the humans an app is for, then applies DesignSkills, Drawably, Thinking Orbs, Bot Avatars and Impeccable as one coherent direction.",
+      "version": "0.1.0",
+      "author": { "name": "hemal08ce094" },
+      "source": "./",
+      "category": "design",
+      "homepage": "https://github.com/hemal08ce094/EnhancementSkill",
+      "tags": ["design", "swiftui", "ios", "macos", "visionos", "hig", "app-store", "skills"]
+    }
+  ]
+}
