@@ -11,6 +11,7 @@ Editors feature apps that feel made for someone. Enhancement Skill turns a short
 | **Thinking Orbs** | Dotted 3D indicators for AI work in progress | [ThinkingOrbsSwiftUI](https://github.com/hemal08ce094/ThinkingOrbsSwiftUI) |
 | **Bot Avatars** | Animated assistant characters with living faces | [BotAvatarsSwiftUI](https://github.com/hemal08ce094/BotAvatarsSwiftUI) |
 | **Impeccable** | SwiftUI craft rules, 22 design commands, anti-pattern detector | [ImpeccableSwiftUI](https://github.com/hemal08ce094/ImpeccableSwiftUI) |
+| **Signature moment** | A spec-first method for one memorable screen or transition per app (local skill, no package) | [`skills/signature-moment-swiftui`](skills/signature-moment-swiftui) |
 
 ![One app, four human briefs: calm companion, trusted tool, playful maker, bold performer](media/hero.png)
 
