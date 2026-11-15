@@ -13,6 +13,7 @@ Editors feature apps that feel made for someone. Enhancement Skill turns a short
 | **Impeccable** | SwiftUI craft rules, 22 design commands, anti-pattern detector | [ImpeccableSwiftUI](https://github.com/hemal08ce094/ImpeccableSwiftUI) |
 | **Signature moment** | A spec-first method for one memorable screen or transition per app (local skill, no package) | [`skills/signature-moment-swiftui`](skills/signature-moment-swiftui) |
 | **Design genre** | Picks one genre per app (Quiet, Character, Atmosphere, Data, Loud), writes `DESIGN.md`, and audits an existing app against its own rules (local skill, no package) | [`skills/design-genre-swiftui`](skills/design-genre-swiftui) |
+| **Footage headers** | Replaces drawn or static header art with real, freely licensed camera footage as silent seamless loops: shot list, sourcing rules, cutting script and a player contract (local skill, no package) | [`skills/footage-headers-swiftui`](skills/footage-headers-swiftui) |
 
 ![One app, four human briefs: calm companion, trusted tool, playful maker, bold performer](media/hero.png)
 
