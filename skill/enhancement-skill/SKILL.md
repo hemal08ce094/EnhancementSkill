@@ -31,6 +31,8 @@ Then fill the Touch Brief in [references/touch-brief.md](references/touch-brief.
 
 Name the app's design genre as part of the brief (Quiet, Character, Atmosphere, Data or Loud; see `skills/design-genre-swiftui`). The genre decides which rules the direction must obey and is recorded in `DESIGN.md`. For an app that already ships, run that skill's audit before changing its look.
 
+Where a screen has a header, banner or launch moment that is drawn in code or reused, prefer real footage of what the screen is about (see `skills/footage-headers-swiftui`): one clip per screen, never shared between apps.
+
 The brief ends in six numbers the package understands: energy, warmth, craft (0 to 1), stakes (low/everyday/high), moment (glance/task/linger/play), assistant (none/quiet/character).
 
 ## 2. Derive the direction
