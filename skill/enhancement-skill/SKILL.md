@@ -29,6 +29,8 @@ Read the app before asking anything: README, `PRODUCT.md`/`DESIGN.md` if present
 
 Then fill the Touch Brief in [references/touch-brief.md](references/touch-brief.md). Infer everything you can from the code and copy; ask the user **at most three** short questions for what the code can't tell you (usually: who exactly, the moment they open it, the one feeling to leave them with). Write the result to `TOUCH.md` at the project root and show it to the user in a few lines. If the project already has `PRODUCT.md` from impeccable, extend it rather than contradicting it.
 
+Name the app's design genre as part of the brief (Quiet, Character, Atmosphere, Data or Loud; see `skills/design-genre-swiftui`). The genre decides which rules the direction must obey and is recorded in `DESIGN.md`. For an app that already ships, run that skill's audit before changing its look.
+
 The brief ends in six numbers the package understands: energy, warmth, craft (0 to 1), stakes (low/everyday/high), moment (glance/task/linger/play), assistant (none/quiet/character).
 
 ## 2. Derive the direction
